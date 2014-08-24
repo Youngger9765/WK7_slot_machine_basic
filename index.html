@@ -1,105 +1,166 @@
-<HTML>
-<HEAD>
-<SCRIPT LANGUAGE="JavaScript">
-var start=0,left=0,center=0,right=0
-var slot1=1,slot2=1,	slot3=1,delay=100 //delay ï¿½î¾­ï¿½ï¿½î¡¾ï¿½ï‹©ï¿½ï‹ªï¿½î®ï¿½î¿œï¿½ï¿½,é ï“€ä¹‹é ï“ï…¬
+<!DOCTYPE html>
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=big5">    <!--ºô­¶¶Ã½X¡H ¦pªG¬Oºô­¶¤º®e¡A½Ğ¦bºô­¶ªº³Ì«e­±¥[¤W¡G <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=big5">.  -->
+
+ <SCRIPT LANGUAGE="JavaScript">
+
+//»s§@¥X¤@­Ó°}¦C©ñ¤J¦U±i¹Ï¤ù§@¬°¸ê®Æ®w
 theImages=new Array()
-for(i=0; i<=4; i++){
+for(i=0; i<4; i++){¡@//¼Æ¦r4,¦ı¹Ï¤ù½s¸¹¬°0~3
 theImages[i]=new Image()
-theImages[i].src="images/"+i+".jpg"
+theImages[i].src="image/"+i+".jpg"¡@//icon¬°³sÄò¹ÏÀÉªº«e¸mÀÉ¦W,¥i¦Û¦æ§ó§ï
+}
+ 
+ var ImgNum1=1;
+ var ImgNum2=1;
+ var ImgNum3=1;
+ 
+ var slot1=1;
+ var slot2=1;
+ var slot3=1;
+ 
+ var run=0;
+ 
+ function startgame() {
+	if(run==0){
+	startgame1();
+	startgame2();
+	startgame3();
+	start=1;
+	run=1;		//Á×§Kstart­«½Æ«ö, ³y¦¨bug
+	}
+}
+	
+function startgame1(){
+		if (slot1 != 0){
+		//ImgNum1++										//¨C¦¸¶i¤Jstartgame()³£·|¥[1
+		//if (ImgNum1>3){									//¦pªGImgNum>3 «h·|­«¸m¨ì1
+		//ImgNum1=1;
+		//}
+		
+		ImgNum1=Math.floor(Math.random()*1000) % 4	// °µ¥XÀH¾÷®ÄªG, Á×§K¥ş°±®É¦P¨B²£¥Í¦P¼Ëµ²ªG
+		
+		document.image1.src=theImages[ImgNum1].src      //¥i¥H´À´«image1ªº³sµ², ±NNAME=image1ªºsrc§ó´«
+		timeID1=setTimeout("startgame1()",100)					//³]©wsetTimeout()
+		}
 }
 
-function game1(){
-if(slot1 !=0){
-start=1
-left=Math.floor(Math.random()*1000) % 5
-document.image1.src=theImages[left].src
-timeID1=setTimeout("game1()",delay)
-}
-}
-
-function game2(){
-if(slot2 !=0){
-center=Math.floor(Math.random()*1000) % 5
-document.image2.src=theImages[center].src
-timeID2=setTimeout("game2()",delay)
-}
+function startgame2(){
+		if (slot2 != 0){
+		//ImgNum2++										//¨C¦¸¶i¤Jstartgame()³£·|¥[1
+		//if (ImgNum2>3){									//¦pªGImgNum>3 «h·|­«¸m¨ì1
+		//ImgNum2=1;
+		//}
+		ImgNum2=Math.floor(Math.random()*1000) % 4	// °µ¥XÀH¾÷®ÄªG, Á×§K¥ş°±®É¦P¨B²£¥Í¦P¼Ëµ²ªG
+		
+		document.image2.src=theImages[ImgNum2].src      //¥i¥H´À´«image1ªº³sµ², ±NNAME=image1ªºsrc§ó´«
+		timeID2=setTimeout("startgame2()",100)					//³]©wsetTimeout()
+		}
 }
 
-function game3(){
-if(slot3 !=0){
-right=Math.floor(Math.random()*1000) % 5
-document.image3.src=theImages[right].src
-timeID3=setTimeout("game3()",delay)
+function startgame3(){
+		if (slot3 != 0){
+		//ImgNum3++										//¨C¦¸¶i¤Jstartgame()³£·|¥[1
+		//if (ImgNum3>3){									//¦pªGImgNum>3 «h·|­«¸m¨ì1
+		//ImgNum3=1;
+		//}
+		ImgNum3=Math.floor(Math.random()*1000) % 4	// °µ¥XÀH¾÷®ÄªG, Á×§K¥ş°±®É¦P¨B²£¥Í¦P¼Ëµ²ªG
+		
+		document.image3.src=theImages[ImgNum3].src      //¥i¥H´À´«image1ªº³sµ², ±NNAME=image1ªºsrc§ó´«
+		timeID3=setTimeout("startgame3()",100)					//³]©wsetTimeout()
+		}
 }
-}
-function stopgame1(){
-slot1=0
-hit()
-}
-function stopgame2(){
-slot2=0
-hit()
-}
-function stopgame3(){
-slot3=0
-hit()
-}
-function hit(){
-if(start == 1){
-if((slot1 == 0) && (slot2 == 0) && (slot3 == 0)) {
-if((left == center) && (center == right)){
-confirm("ï¿½î¼ƒï¿½ï¿½î°«î¾›åš—ï—¹è‘‰ï¿½ï¿½î”î åš—ï¿½")
-Init()
 
-}else{
-confirm( "Go,Go,Go..........åš—ï¿½")
-Init()
+function stopall(){
+	stop1();
+	stop2();
+	stop3();
 }
+
+ 
+ function stop1(){
+	if(start==1){			//¼W¥[start°µ¬°¿ëÃÑ¬O§_¥¿¦b°õ¦æ, ¦pªGÁÙ¥¼¦^¨ìstart=1, «hslot¤£·|µ¥©ó0, Á×§Kstop¯Ã¦h«ö¤@¦¸Åıint­È¶]±¼
+	slot1=0
+	}
+	int()
+ }
+ 
+ function stop2(){
+	if(start==1){
+	slot2=0
+	}
+	int()
+ }
+ 
+ function stop3(){
+	if(start==1){
+	slot3=0
+	}
+	int()
+ }
+  
+ function int(){
+	if((slot1==0) && (slot2==0) && (slot3==0)){       //¤@©w­n¤T±i¹Ï³£stop¤~¯à¶i¦æint()
+	
+	if(ImgNum3==ImgNum2 && ImgNum3==ImgNum1){
+	alert("You win")
+	}
+	else{
+	alert("You lose")
+	}
+	
+	
+	
+	start=0
+	run=0
+	slot1=1;	//slot½Õ¦^1 (¥¼±Ò°Êª¬ºA)
+	slot2=1;
+	slot3=1;
+	clearTimeout(timeID1)      //²M°£setTimeout, ¸õ¥Xstartgame()
+	clearTimeout(timeID2)
+	clearTimeout(timeID3)
+	}
 }
-}else{
-slot1=1
-slot2=1
-slot3=1
-}
-}	function Init(){
-start=0;
-slot1=1;
-slot2=1;
-slot3=1;
-clearTimeout(timeID1);
-clearTimeout(timeID2);
-clearTimeout(timeID3);
-document.image1.src="images/1.jpg"
-document.image2.src="images/1.jpg"
-document.image3.src="images/1.jpg"
-}
-</SCRIPT>
+	
+ 
+ 
+</script>
 
-</HEAD>
 
-<BODY >
+</head>
 
-<CENTER>
-<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
-<TR><TD>
-<p align="center"><IMG SRC="images/1.jpg" NAME="image1" style="width:250px;height:250px;"></p>
-</TD><TD>
-<p align="center"><IMG SRC="images/1.jpg" NAME="image2" style="width:250px;height:250px;"></p>
-</TD><TD>
-<p align="center"><IMG SRC="images/1.jpg" NAME="image3" style="width:250px;height:250px;"></p>
-</TD></TR>
-<TR>
-<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame1()" VALUE="[ï¿½ï¿½î°«è¿«]"></TD>
-<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame2()" VALUE="[ï¿½ï¿½î°«è¿«]"></TD>
-<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame3()" VALUE="[ï¿½ï¿½î°«è¿«]"></TD>
-</TR><TR>
-<TD COLSPAN="3" ALIGN="center">
-<INPUT TYPE="button" onClick="game1();game2();game3()" VALUE="ï¿½ï¿½ï•ï¿½ï¿½">
-<INPUT TYPE="button" onClick="stopgame1();stopgame2();stopgame3()" VALUE="ï¿½ï…²ï¿½ï¿½ï¿½">
-</TD></TR>
-</TABLE>
-</CENTER> 
+<body>
+	
+<center>
+	<table>
+	<tr>
+		<td> <p><IMG SRC="image/1.jpg" NAME="image1" style="width:250px;height:250px;"></p> </td>
+		<td> <p><IMG SRC="image/2.jpg" NAME="image2" style="width:250px;height:250px;"></p> </td>
+		<td> <p><IMG SRC="image/3.jpg" NAME="image3" style="width:250px;height:250px;"></p> </td>
+	</tr>
+	<tr>
+		<td ALIGN="center"> <button type="button" onclick="stop1()">STOP!</button> </td > 	
+		<td ALIGN="center"> <button type="button" onclick="stop2()">STOP!</button> </td>
+		<td ALIGN="center"> <button type="button" onclick="stop3()">STOP!</button> </td>
+	</tr>
+	<br>
+	<tr>
+		<td> </td>
+		<td ALIGN="center"> 
+		<button type="button" onclick="startgame()">START!</button>
+		<button type="button" onclick="stopall()">All-STOP!</button>
+		</td>
+		<td> </td>
+	</tr>
+	
+	</table>
+</center>
 
-</BODY>
-</HTML>
+
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+var start=0,left=0,center=0,right=0
+var slot1=1,slot2=1,	slot3=1,delay=100 //delay ���������,頞之頞
+theImages=new Array()
+for(i=0; i<=4; i++){
+theImages[i]=new Image()
+theImages[i].src="images/"+i+".jpg"
+}
+
+function game1(){
+if(slot1 !=0){
+start=1
+left=Math.floor(Math.random()*1000) % 5
+document.image1.src=theImages[left].src
+timeID1=setTimeout("game1()",delay)
+}
+}
+
+function game2(){
+if(slot2 !=0){
+center=Math.floor(Math.random()*1000) % 5
+document.image2.src=theImages[center].src
+timeID2=setTimeout("game2()",delay)
+}
+}
+
+function game3(){
+if(slot3 !=0){
+right=Math.floor(Math.random()*1000) % 5
+document.image3.src=theImages[right].src
+timeID3=setTimeout("game3()",delay)
+}
+}
+function stopgame1(){
+slot1=0
+hit()
+}
+function stopgame2(){
+slot2=0
+hit()
+}
+function stopgame3(){
+slot3=0
+hit()
+}
+function hit(){
+if(start == 1){
+if((slot1 == 0) && (slot2 == 0) && (slot3 == 0)) {
+if((left == center) && (center == right)){
+confirm("���嚗葉��嚗�")
+Init()
+
+}else{
+confirm( "Go,Go,Go..........嚗�")
+Init()
+}
+}
+}else{
+slot1=1
+slot2=1
+slot3=1
+}
+}	function Init(){
+start=0;
+slot1=1;
+slot2=1;
+slot3=1;
+clearTimeout(timeID1);
+clearTimeout(timeID2);
+clearTimeout(timeID3);
+document.image1.src="images/1.jpg"
+document.image2.src="images/1.jpg"
+document.image3.src="images/1.jpg"
+}
+</SCRIPT>
+
+</HEAD>
+
+<BODY >
+
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR><TD>
+<p align="center"><IMG SRC="images/1.jpg" NAME="image1" style="width:250px;height:250px;"></p>
+</TD><TD>
+<p align="center"><IMG SRC="images/1.jpg" NAME="image2" style="width:250px;height:250px;"></p>
+</TD><TD>
+<p align="center"><IMG SRC="images/1.jpg" NAME="image3" style="width:250px;height:250px;"></p>
+</TD></TR>
+<TR>
+<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame1()" VALUE="[��迫]"></TD>
+<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame2()" VALUE="[��迫]"></TD>
+<TD ALIGN="center"><INPUT TYPE="button" onClick="stopgame3()" VALUE="[��迫]"></TD>
+</TR><TR>
+<TD COLSPAN="3" ALIGN="center">
+<INPUT TYPE="button" onClick="game1();game2();game3()" VALUE="����">
+<INPUT TYPE="button" onClick="stopgame1();stopgame2();stopgame3()" VALUE="����">
+</TD></TR>
+</TABLE>
+</CENTER> 
+
+</BODY>
+</HTML>
